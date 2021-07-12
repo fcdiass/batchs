@@ -15,40 +15,40 @@ REM Set GeMA path file:
 set PATH="C:\Program Files\GeMA";%PATH%
 
 :main
-	setlocal enableextensions enabledelayedexpansion
-	if exist runFolders.txt (
-		for /F "delims=" %%g in (runFolders.txt) do (
-			if "%%g"=="*" ( call:runAll&call:end&exit/b )
-			set folderName=%%g
-			cd /d "!mypath!\!folderName!"
-			call:run
-		)
-		call:end
-	) else (
-		call:runAll&call:end
-	)
+    setlocal enableextensions enabledelayedexpansion
+    if exist runFolders.txt (
+        for /F "delims=" %%g in (runFolders.txt) do (
+            if "%%g"=="*" ( call:runAll&call:end&exit/b )
+            set folderName=%%g
+            cd /d "!mypath!\!folderName!"
+            call:run
+        )
+        call:end
+    ) else (
+        call:runAll&call:end
+    )
 goto :eof
 
 :runAll
-	for /d %%g in (*) do (
-		set folderName=%%g
-		cd /d "!mypath!\!folderName!"
-		call:run
-	)
+    for /d %%g in (*) do (
+        set folderName=%%g
+        cd /d "!mypath!\!folderName!"
+        call:run
+    )
 goto:eof
 
 :run
-	Title Run multiple analysis with GeMA - Runnig !folderName!...
-	echo ================================================================================
-	echo Runnig !folderName!
-	echo ================================================================================
-	set temp1=0
-	for %%a in (*) do (
-		if %%~xa==.lua ( set temp1=1 )
-	)
-	if !temp1!==0 (
-		echo             ***    There is no input file for this model    ***
-	) else (
+    Title Run multiple analysis with GeMA - Runnig !folderName!...
+    echo ================================================================================
+    echo Runnig !folderName!
+    echo ================================================================================
+    set temp1=0
+    for %%a in (*) do (
+        if %%~xa==.lua ( set temp1=1 )
+    )
+    if !temp1!==0 (
+        echo             ***    There is no input file for this model    ***
+    ) else (
         if exist options.txt (
             for /F "delims=" %%g in (options.txt) do (
                 call:GeMA "%%g"
@@ -56,9 +56,9 @@ goto:eof
         ) else (
             call:GeMA
         )
-	)
-	echo.
-	echo.
+    )
+    echo.
+    echo.
 goto:eof
 
 :GeMA
@@ -84,8 +84,8 @@ goto:eof
 goto:eof
 
 :end
-	Title Run multiple analysis with GeMA - STEPS FINISHED
-	endlocal
-	echo ============================== STEPS FINISHED ==================================
-	echo. 
+    Title Run multiple analysis with GeMA - STEPS FINISHED
+    endlocal
+    echo ============================== STEPS FINISHED ==================================
+    echo. 
     pause
