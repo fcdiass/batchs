@@ -12,7 +12,7 @@ REM Exclusions by extension (separated by a space)
 set exRange=.lua .xls .xlsx .bat .py
 
 REM Exclusion by name + extension (separated by a space and MUST be inside double quotes)
-set nERange="runFolders.txt" "options.txt"
+set nERange="runFolders.txt" "options.txt" "readme.txt"
 
 setlocal enabledelayedexpansion
 cd /d %~dp0
